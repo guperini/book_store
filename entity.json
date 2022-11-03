@@ -1,0 +1,40 @@
+{
+    "name": "book",
+    "parametros": [
+        {
+            "tipo": "String",
+            "parametro": "kind"
+        },
+        {
+            "tipo": "String",
+            "parametro": "id"
+        },
+        {
+            "tipo": "String",
+            "parametro": "etag"
+        },
+        {
+            "tipo": "String",
+            "parametro": "selfLink"
+        },
+        {
+            "tipo": "VolumeInfo",
+            "parametro": "volumeInfo"
+        },
+        {
+            "tipo": "SaleInfo",
+            "parametro": "saleInfo"
+        },
+        {
+            "tipo": "AccessInfo",
+            "parametro": "accessInfo"
+        },
+        {
+            "tipo": "SearchInfo",
+            "parametro": "searchInfo"
+        }
+    ],
+    "usecases": [
+        "search_books"
+    ]
+}

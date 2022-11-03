@@ -1,0 +1,13 @@
+bricks:
+  view:
+    git:
+      url: "https://github.com/guperini/bricks.git"
+      path: view
+  widget:
+    git:
+      url: "https://github.com/guperini/bricks.git"
+      path: widget
+  entity_usecases:
+    git:
+      url: "https://github.com/guperini/bricks.git"
+      path: entity_usecases
