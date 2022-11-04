@@ -1,11 +1,10 @@
-import 'package:book_store/data/book/book_dto.dart';
 import 'package:dartz/dartz.dart';
 
 import 'book_entity.dart';
 import 'book_repository.dart';
 
 abstract class SearchBooksUseCase {
-  Future<Either<Exception, List<BookEntity>>> call(String searchText);
+  Future<Either<Exception, List<BookEntity>>> call(String searchText, int startIndex, int maxResults);
 }
 
 class SearchBooksUseCaseImp implements SearchBooksUseCase {
@@ -13,11 +12,7 @@ class SearchBooksUseCaseImp implements SearchBooksUseCase {
   SearchBooksUseCaseImp(this.bookRepository);
 
   @override
-  Future<Either<Exception, List<BookEntity>>> call(String searchText) async {
-    return bookRepository.searchBooks(searchText);
+  Future<Either<Exception, List<BookEntity>>> call(String searchText, int startIndex, int maxResults) async {
+    return await bookRepository.searchBooks(searchText, startIndex, maxResults);
   }
 }
-
-// BINDING:
-//     Get.lazyPut<SearchBooksUseCase>(
-//      () => SearchBooksUseCaseImp(Get.find()));

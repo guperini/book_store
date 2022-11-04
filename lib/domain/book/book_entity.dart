@@ -9,6 +9,16 @@ class BookEntity {
   SaleInfo? saleInfo;
   AccessInfo? accessInfo;
   SearchInfo? searchInfo;
+  bool isFavorite;
 
-  BookEntity({kind, id, etag, selfLink, volumeInfo, saleInfo, accessInfo, searchInfo});
+  BookEntity(
+      {this.kind,
+      this.id,
+      this.etag,
+      this.selfLink,
+      this.volumeInfo,
+      this.saleInfo,
+      this.accessInfo,
+      this.searchInfo,
+      this.isFavorite = false});
 }

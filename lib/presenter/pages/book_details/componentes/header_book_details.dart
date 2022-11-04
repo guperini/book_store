@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../splash_controller.dart';
+import '../book_details_controller.dart';
 
-class HeaderSplash extends GetView<SplashController> {
-  const HeaderSplash({Key? key}) : super(key: key);
+class HeaderBookDetails extends GetView<BookDetailsController> {
+  const HeaderBookDetails({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

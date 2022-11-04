@@ -2,17 +2,21 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
-import '../../presenter/widgets/dialogs/custom_snackbar.dart';
+import '../../presenter/widgets/custom_snackbar.dart';
 
 class InternetConnectionListener extends GetxController {
-  final RxBool isConnected = true.obs;
+  final isConnected = true.obs;
 
   StreamSubscription<InternetConnectionStatus>? connectionListener;
 
   @override
   void onInit() {
-    connectionListener = _initConnectionListener();
+    if (!kIsWeb) {
+      connectionListener = _initConnectionListener();
+    }
+
     super.onInit();
   }
 
@@ -41,8 +45,8 @@ class InternetConnectionListener extends GetxController {
       );
   showNoInternetSnackbar() {
     return CustomSnackbar.call(
-      "Conexão de Internet",
-      "Oops, parece que vc está sem internet",
+      "Internet Connection",
+      "Oops, no Internet Connection buddy...",
     );
   }
 }

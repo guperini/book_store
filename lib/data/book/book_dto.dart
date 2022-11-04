@@ -2,21 +2,22 @@ import '../../domain/book/book_entity.dart';
 
 class Book extends BookEntity {
   Book({
-    required super.kind,
-    required super.id,
-    required super.etag,
-    required super.selfLink,
-    required super.volumeInfo,
-    required super.saleInfo,
-    required super.accessInfo,
-    required super.searchInfo,
+    super.kind,
+    super.id,
+    super.etag,
+    super.selfLink,
+    super.volumeInfo,
+    super.saleInfo,
+    super.accessInfo,
+    super.searchInfo,
   });
 
   Book.fromJson(Map<String, dynamic> json) {
-    kind = json['kind'];
-    id = json['id'];
-    etag = json['etag'];
-    selfLink = json['selfLink'];
+    if (json['kind'] != null) kind = json['kind'];
+    if (json['id'] != null) id = json['id'];
+    if (json['etag'] != null) etag = json['etag'];
+    if (json['selfLink'] != null) selfLink = json['selfLink'];
+
     volumeInfo = json['volumeInfo'] != null ? VolumeInfo.fromJson(json['volumeInfo']) : null;
     saleInfo = json['saleInfo'] != null ? SaleInfo.fromJson(json['saleInfo']) : null;
     accessInfo = json['accessInfo'] != null ? AccessInfo.fromJson(json['accessInfo']) : null;
@@ -104,7 +105,7 @@ class VolumeInfo {
 
   VolumeInfo.fromJson(Map<String, dynamic> json) {
     title = json['title'];
-    authors = json['authors'].cast<String>();
+    if (json['authors'] != null) authors = json['authors'].cast<String>();
     publisher = json['publisher'];
     publishedDate = json['publishedDate'];
     description = json['description'];
@@ -117,7 +118,7 @@ class VolumeInfo {
     readingModes = json['readingModes'] != null ? ReadingModes.fromJson(json['readingModes']) : null;
     pageCount = json['pageCount'];
     printType = json['printType'];
-    categories = json['categories'].cast<String>();
+    if (json['categories'] != null) categories = json['categories'].cast<String>();
     maturityRating = json['maturityRating'];
     allowAnonLogging = json['allowAnonLogging'];
     contentVersion = json['contentVersion'];

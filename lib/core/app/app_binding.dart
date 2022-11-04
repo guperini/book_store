@@ -1,8 +1,9 @@
-import 'package:get/get.dart' as getX;
+import 'package:get/get.dart';
 
+import '../controllers/internet_connection_listener.dart';
 import 'app_controller.dart';
 
-class AppBinding extends getX.Bindings {
+class AppBinding extends Bindings {
   @override
   void dependencies() {
     // repositories
@@ -10,5 +11,7 @@ class AppBinding extends getX.Bindings {
     // usecases
 
     // controllers
+    Get.lazyPut(() => InternetConnectionListener());
+    Get.lazyPut(() => AppController(Get.find()));
   }
 }
