@@ -14,7 +14,7 @@ class SplashController extends GetxController {
 
   final isLoading = true.obs;
 
-  // métodos
+  // methods
 
   @override
   void onInit() async {

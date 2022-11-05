@@ -28,7 +28,7 @@ class BookDetailsController extends GetxController {
 
   List<String> get authors => book.value.volumeInfo!.authors ?? [];
 
-  // métodos
+  // methods
 
   onPressedFavoriteButton() {
     Get.find<StoreController>().toogleFavoriteBook(book.value);

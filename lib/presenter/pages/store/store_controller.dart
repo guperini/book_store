@@ -20,7 +20,7 @@ class StoreController extends GetxController {
 
   final scrollController = ScrollController();
 
-  // listas
+  // lists
 
   final allBooks = <BookEntity>[].obs;
   final favoriteBooks = <BookEntity>[].obs;
@@ -31,7 +31,7 @@ class StoreController extends GetxController {
   final isloading = false.obs;
   final showOnlyFavoriteBooks = false.obs;
 
-  // métodos
+  // methods
 
   @override
   void onInit() {
