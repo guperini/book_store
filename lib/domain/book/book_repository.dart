@@ -4,4 +4,5 @@ import 'book_entity.dart';
 
 abstract class BookRepository {
   Future<Either<Exception, List<BookEntity>>> searchBooks(String searchText, int startIndex, int maxResults);
+  Future<Either<Exception, BookEntity>> getFavoriteBook(String selfLinkId);
 }

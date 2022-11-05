@@ -8,13 +8,17 @@ import 'package:flutter/material.dart';
 class BookItem extends StatelessWidget {
   final BookEntity book;
   final Function onTap;
-  final bool isFavorite;
 
-  const BookItem({Key? key, required this.book, required this.onTap, this.isFavorite = false}) : super(key: key);
+  const BookItem({
+    Key? key,
+    required this.book,
+    required this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return RoundContainer(
+      onTap: () => onTap(),
       radius: 10,
       shadow: false,
       backgroundColor: Colors.white,
@@ -55,7 +59,7 @@ class BookItem extends StatelessWidget {
               const SizedBox(width: 15),
               Icon(
                 Icons.star,
-                color: isFavorite ? Colors.yellow : Colors.grey,
+                color: book.isFavorite ? Colors.yellow : Colors.grey,
                 size: 12,
               ),
               const Spacer(),

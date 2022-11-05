@@ -2,7 +2,6 @@ import 'package:book_store/core/constants/endpoints.dart';
 import 'package:book_store/infra/adapters/http_adapter.dart';
 import 'package:book_store/infra/adapters/http_adapter_imp.dart';
 import 'package:dartz/dartz.dart';
-import 'package:hive/hive.dart';
 
 import '../../domain/book/book_entity.dart';
 import '../../domain/book/book_repository.dart';
@@ -15,7 +14,6 @@ class BookRepositoryImp implements BookRepository {
 
   @override
   Future<Either<Exception, List<BookEntity>>> searchBooks(String searchText, int startIndex, int maxResults) async {
-    final box = Hive.box<bool>('favoriteBooks');
     try {
       final Map<String, dynamic> response = await httpAdapter.request(
           method: HttpMethod.get,
@@ -27,11 +25,25 @@ class BookRepositoryImp implements BookRepository {
       final books = <BookEntity>[];
 
       for (final item in list) {
-        final book = Book.fromJson(item);
-        final isFavorite = box.get(book.id) ?? false;
-        books.add(Book.fromJson(item)..isFavorite = isFavorite);
+        books.add(Book.fromJson(item));
       }
       return Right(books);
+    } catch (e) {
+      return Left(Exception(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Exception, BookEntity>> getFavoriteBook(String selfLinkId) async {
+    try {
+      final Map<String, dynamic> response = await httpAdapter.request(
+        method: HttpMethod.get,
+        endpoint: selfLinkId,
+      );
+
+      final result = Map<String, dynamic>.from(response);
+
+      return Right(Book.fromJson(result));
     } catch (e) {
       return Left(Exception(e.toString()));
     }

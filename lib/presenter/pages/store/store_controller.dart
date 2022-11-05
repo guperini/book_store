@@ -4,21 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import '../../../core/app/app_controller.dart';
+import '../../../domain/book/get_favorite_book_usecase.dart';
 
 class StoreController extends GetxController {
   final AppController appController;
   final SearchBooksUseCase searchBooksUseCaseImp;
+  final GetFavoriteBookUseCase getFavoriteBookUseCaseImp;
 
-  StoreController(this.appController, this.searchBooksUseCaseImp);
+  StoreController(this.appController, this.searchBooksUseCaseImp, this.getFavoriteBookUseCaseImp);
 
-  @override
-  void onInit() {
-    _getBooks();
-    _initScrollControllerListener();
-    super.onInit();
-  }
-
-  final box = Hive.box<bool>('favoriteBooks');
+  final box = Hive.box<String>('favoriteBooks');
 
   // arguments
 
@@ -29,17 +24,23 @@ class StoreController extends GetxController {
   // listas
 
   final allBooks = <BookEntity>[].obs;
-  List<BookEntity> get favoriteBooks => allBooks.where((p0) => box.get(p0.id) != null && box.get(p0.id)!).toList().obs;
+  final favoriteBooks = <BookEntity>[].obs;
   List<BookEntity> get booksToShow => showOnlyFavoriteBooks.value ? favoriteBooks : allBooks;
 
-  // variáveis observáveis
+  // observables
 
   final isloading = false.obs;
-  final showOnlyFavoriteBooks = true.obs;
-
-  // getters e setters
+  final showOnlyFavoriteBooks = false.obs;
 
   // métodos
+
+  @override
+  void onInit() {
+    _getBooks();
+    _getFavoriteBooks();
+    _initScrollControllerListener();
+    super.onInit();
+  }
 
   _initScrollControllerListener() {
     scrollController.addListener(() {
@@ -49,15 +50,68 @@ class StoreController extends GetxController {
     });
   }
 
-  toogleFavoriteBook(String id) {
+  onlyFavoriteBooks() async {
+    showOnlyFavoriteBooks.toggle();
+
+    isloading.value = true;
+
+    isloading.value = false;
+  }
+
+  _getFavoriteBooks() async {
+    favoriteBooks.assignAll([]);
+
+    final favoritesKeys = List<String>.from(box.keys);
+
+    for (final key in favoritesKeys) {
+      final value = box.get(key);
+
+      if (value != null) {
+        final result = await getFavoriteBookUseCaseImp.call(value);
+        // ignore: avoid_print
+        result.fold((l) => print("Error: $l"), (r) => favoriteBooks.add(r..isFavorite = true));
+      }
+    }
+  }
+
+  toogleFavoriteBook(BookEntity book) {
+    final result = box.get(book.id);
+
+    int? index;
+
+    if (allBooks.contains(book)) {
+      index = allBooks.indexOf(book);
+    }
+
+    if (result == null) {
+      box.put(book.id, book.selfLink!);
+
+      allBooks[index!] = book..isFavorite = true;
+      favoriteBooks.add(book);
+    } else {
+      if (index != null) {
+        allBooks[index] = book..isFavorite = false;
+      }
+
+      if (favoriteBooks.where((p0) => p0.id == book.id).toList().isNotEmpty) {
+        final item = favoriteBooks.where((p0) => p0.id == book.id).toList()[0];
+        final favoriteIndex = favoriteBooks.indexOf(item);
+        favoriteBooks.removeAt(favoriteIndex);
+      }
+
+      box.delete(
+        book.id,
+      );
+    }
+  }
+
+  bool isBookFavorite(String id) {
     final result = box.get(id);
 
-    if (result == null || !result) {
-      box.put(id, true);
-      allBooks.where((p0) => p0.id == id).toList()[0].isFavorite = true;
+    if (result == null) {
+      return false;
     } else {
-      box.put(id, false);
-      allBooks.where((p0) => p0.id == id).toList()[0].isFavorite = false;
+      return true;
     }
   }
 
@@ -66,6 +120,7 @@ class StoreController extends GetxController {
     final result = await searchBooksUseCaseImp.call('mobile development', allBooks.length, 20);
 
     result.fold((l) {
+      // ignore: avoid_print
       print(l.toString());
     }, (r) {
       if (r.isNotEmpty) {

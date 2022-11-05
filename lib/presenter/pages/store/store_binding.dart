@@ -1,5 +1,6 @@
 import 'package:book_store/data/book/book_repository_imp.dart';
 import 'package:book_store/domain/book/book_repository.dart';
+import 'package:book_store/domain/book/get_favorite_book_usecase.dart';
 import 'package:book_store/infra/adapters/http_adapter.dart';
 import 'package:book_store/infra/adapters/http_adapter_imp.dart';
 import 'package:get/get.dart';
@@ -24,11 +25,12 @@ class StoreBinding extends Bindings {
     // Usecases
 
     Get.lazyPut<SearchBooksUseCase>(() => SearchBooksUseCaseImp(Get.find()));
+    Get.lazyPut<GetFavoriteBookUseCase>(() => GetFavoriteBookUseCaseImp(Get.find()));
 
     // Controllers
 
     Get.lazyPut(() => InternetConnectionListener());
     Get.lazyPut(() => AppController(Get.find()));
-    Get.put(StoreController(Get.find(), Get.find()));
+    Get.put(StoreController(Get.find(), Get.find(), Get.find()));
   }
 }

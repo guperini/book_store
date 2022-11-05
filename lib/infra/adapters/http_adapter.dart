@@ -7,6 +7,5 @@ abstract class HttpAdapter {
       Map<String, dynamic>? body,
       Map<String, String>? headers,
       Map<String, dynamic>? queryParameters,
-      bool printRequest,
       String? token});
 }

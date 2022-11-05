@@ -5,12 +5,13 @@ import 'package:get/get.dart';
 
 import '../store_controller.dart';
 
-class BodyStore extends GetWidget<StoreController> {
-  const BodyStore({Key? key}) : super(key: key);
+class BooksGridView extends GetWidget<StoreController> {
+  const BooksGridView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scrollbar(
+      controller: controller.scrollController,
       child: Obx(
         () => GridView.builder(
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -23,14 +24,14 @@ class BodyStore extends GetWidget<StoreController> {
           itemCount: controller.booksToShow.length,
           itemBuilder: (context, index) {
             final item = controller.booksToShow[index];
+            item.isFavorite = controller.isBookFavorite(item.id!);
             return BookItem(
               key: Key(item.id!),
               book: item,
               onTap: () => Get.toNamed(
                 Routes.bookDetails,
-                arguments: item,
+                arguments: item.obs,
               ),
-              isFavorite: controller.box.get(item.id) ?? false,
             );
           },
         ),

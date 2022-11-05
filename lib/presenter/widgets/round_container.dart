@@ -35,23 +35,25 @@ class RoundContainer extends StatelessWidget {
     return InkWell(
       onTap: () => onTap == null ? {} : onTap!(),
       child: Container(
-          margin: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: verticalPadding),
-          height: height,
-          width: width,
-          decoration: BoxDecoration(
-              border: Border.all(color: borderColor ?? Colors.transparent, width: borderThickness),
-              color: backgroundColor,
-              boxShadow: !shadow
-                  ? null
-                  : [
-                      BoxShadow(
-                        color: shadowColor,
-                        offset: const Offset(0.0, 1.0), //(x,y)
-                        blurRadius: 10.0,
-                      )
-                    ],
-              borderRadius: BorderRadius.circular(radius)),
-          child: child ?? const SizedBox()),
+        margin: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: verticalPadding),
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+          border: Border.all(color: borderColor ?? Colors.transparent, width: borderThickness),
+          color: backgroundColor,
+          boxShadow: !shadow
+              ? null
+              : [
+                  BoxShadow(
+                    color: shadowColor,
+                    offset: const Offset(0.0, 1.0), //(x,y)
+                    blurRadius: 10.0,
+                  )
+                ],
+          borderRadius: BorderRadius.circular(radius),
+        ),
+        child: child ?? const SizedBox(),
+      ),
     );
   }
 }

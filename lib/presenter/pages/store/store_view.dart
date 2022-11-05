@@ -1,10 +1,11 @@
+import 'package:book_store/presenter/pages/store/componentes/no_books_to_show.dart';
 import 'package:book_store/presenter/widgets/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'store_controller.dart';
 import 'componentes/header_store.dart';
-import 'componentes/body_store.dart';
+import 'componentes/books_gridview.dart';
 
 class StoreView extends GetView<StoreController> {
   const StoreView({Key? key}) : super(key: key);
@@ -14,17 +15,22 @@ class StoreView extends GetView<StoreController> {
     return Scaffold(
       body: Obx(
         () => Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const HeaderStore(),
-            const Expanded(child: BodyStore()),
+            if (controller.booksToShow.isNotEmpty)
+              const Expanded(child: BooksGridView())
+            else if (!controller.isloading.value)
+              const NoBooksToShow(),
             if (controller.isloading.value)
               const SizedBox(
-                  height: 60,
-                  width: 60,
-                  child: Padding(
-                    padding: EdgeInsets.all(15.0),
-                    child: LoadingIndicator(size: 20),
-                  ))
+                height: 60,
+                width: 60,
+                child: Padding(
+                  padding: EdgeInsets.all(15.0),
+                  child: LoadingIndicator(size: 20),
+                ),
+              )
           ],
         ),
       ),

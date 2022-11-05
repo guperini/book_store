@@ -3,7 +3,7 @@ import '../../domain/book/book_entity.dart';
 class Book extends BookEntity {
   Book({
     super.kind,
-    super.id,
+    required super.id,
     super.etag,
     super.selfLink,
     super.volumeInfo,

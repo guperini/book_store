@@ -14,16 +14,20 @@ class DefaultButton extends StatelessWidget {
   final double verticalPadding;
   final double elevation;
   final Color backgroundColor;
+  final double textSize;
+  final Color textColor;
 
   const DefaultButton(
       {Key? key,
       required this.onPressed,
       required this.text,
+      this.textColor = Colors.white,
       this.durationInMilliseconds = 300,
       this.enable = true,
       this.isLoading = false,
       this.horizontalPadding = 0,
       this.elevation = 10,
+      this.textSize = 14,
       this.backgroundColor = const Color(0xFF0659E9),
       this.verticalPadding = 0})
       : super(key: key);
@@ -55,7 +59,7 @@ class DefaultButton extends StatelessWidget {
                       appController.internetConnectionListener.showNoInternetSnackbar();
                     }
                   }
-                : () {},
+                : null,
             child: AnimatedSwitcher(
               duration: const Duration(milliseconds: 250),
               child: isLoading
@@ -67,9 +71,7 @@ class DefaultButton extends StatelessWidget {
                       children: [
                         Text(
                           text.toUpperCase(),
-                          style: const TextStyle(
-                            fontSize: 14,
-                          ),
+                          style: TextStyle(fontSize: textSize, color: textColor),
                         ),
                       ],
                     ),

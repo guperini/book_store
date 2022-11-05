@@ -19,7 +19,6 @@ class HttpAdapterImp implements HttpAdapter {
     Map<String, dynamic>? body,
     Map<String, String>? headers,
     Map<String, dynamic>? queryParameters = const <String, dynamic>{},
-    bool printRequest = false,
   }) async {
     Map<String, String> defaultHeaders = {
       if (token != null) 'Authorization': token,
@@ -30,28 +29,18 @@ class HttpAdapterImp implements HttpAdapter {
 
     var response = Response('', 500);
     try {
-      if (printRequest) {
-        print("Request -> $endpoint");
-        if (queryParameters != null) {
-          print("Params -> $queryParameters");
-        }
-        if (body != null) {
-          print("Body -> $body");
-        }
-      }
       switch (method) {
         case HttpMethod.get:
           try {
             final queryString =
                 Uri(queryParameters: queryParameters!.map((key, value) => MapEntry(key, value.toString()))).query;
-            if (printRequest) {
-              print(Uri.parse("$endpoint?$queryString"));
-            }
+
             response = await client.get(
               Uri.parse("$endpoint?$queryString"),
               headers: headers ?? defaultHeaders,
             );
           } catch (e) {
+            // ignore: avoid_print
             print(e);
           }
 
@@ -88,19 +77,6 @@ class HttpAdapterImp implements HttpAdapter {
       }
     } catch (error) {
       throw HttpError.serverError;
-    }
-    if (printRequest) {
-      print("Request -> ${Uri.parse(endpoint)}");
-      if (queryParameters != null) {
-        print("Params -> $queryParameters");
-      }
-      if (body != null) {
-        print("Body -> $body");
-      }
-
-      print("Code -> ${response.statusCode}");
-
-      print("Response -> ${response.body}");
     }
     return _handleResponse(response, endpoint);
   }

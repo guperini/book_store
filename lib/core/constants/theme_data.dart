@@ -20,16 +20,3 @@ final ThemeData themeData = ThemeData(
     ),
   ),
 );
-
-// ignore: avoid_classes_with_only_static_members
-class AppColors {
-  static const Color appColor = Color(0xFF0659E9);
-  static const Color warning = Color(0xffF4D568);
-  static const Color azulEscuro = Color(0xff0358AF);
-  static const Color azulClaro = Color(0xff0077F3);
-  static const Color verde = Color(0xff8FD14F);
-  static const Color cinza = Color(0xffD8D8D8);
-  static const Color cinzaEscuro = Color(0xffC5C5C5);
-  static const Color vermelhoErro = Color(0xffD9133B);
-  static const Color azulChamativo = Color(0xff0EC1C7);
-}

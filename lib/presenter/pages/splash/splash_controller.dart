@@ -8,6 +8,14 @@ class SplashController extends GetxController {
 
   SplashController(this.appController);
 
+  // observable variables
+
+  RxBool get showGoToStoreButton => (appController.isConnected.value && !isLoading.value).obs;
+
+  final isLoading = true.obs;
+
+  // métodos
+
   @override
   void onInit() async {
     await Future.delayed(const Duration(seconds: 3));
@@ -15,22 +23,6 @@ class SplashController extends GetxController {
 
     super.onInit();
   }
-
-  RxBool get showGoToStoreButton => (appController.isConnected.value && !isLoading.value).obs;
-
-  final isLoading = true.obs;
-
-  // arguments
-
-  // text controllers
-
-  // listas
-
-  // variáveis observáveis
-
-  // getters e setters
-
-  // métodos
 
   onGoToStoreButtonPressed() {
     Get.toNamed(Routes.store);

@@ -26,7 +26,7 @@ class AppController extends GetxController {
 
     Hive.init(appDocDir.path);
 
-    Hive.openBox<bool>('favoriteBooks');
+    Hive.openBox<String>('favoriteBooks');
   }
 
   // variables
