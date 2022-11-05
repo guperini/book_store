@@ -14,21 +14,6 @@ class AppController extends GetxController {
     this.internetConnectionListener,
   );
 
-  @override
-  void onInit() {
-    _initHive();
-
-    super.onInit();
-  }
-
-  _initHive() async {
-    Directory appDocDir = await getApplicationDocumentsDirectory();
-
-    Hive.init(appDocDir.path);
-
-    Hive.openBox<String>('favoriteBooks');
-  }
-
   // variables
   static bool producao = const bool.fromEnvironment("production");
   static String versaoDoApp = "0.0.2";
@@ -37,11 +22,27 @@ class AppController extends GetxController {
   // getters
   Rx<bool> get isConnected => internetConnectionListener.isConnected;
 
+  // methods
+  @override
+  void onInit() {
+    _initHive();
+
+    super.onInit();
+  }
+
   @override
   void onClose() {
     if (listener != null) {
       listener!.cancel();
     }
     super.onClose();
+  }
+
+  _initHive() async {
+    Directory appDocDir = await getApplicationDocumentsDirectory();
+
+    Hive.init(appDocDir.path);
+
+    Hive.openBox<String>('favoriteBooks');
   }
 }

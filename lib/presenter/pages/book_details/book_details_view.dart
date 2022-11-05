@@ -55,6 +55,7 @@ class BookDetailsView extends GetView<BookDetailsController> {
               elevation: 0,
               horizontalPadding: Get.width * 0.4,
               onPressed: () => Get.back(),
+              executeWhenNoInternet: true,
               text: 'BACK',
               textSize: 12,
               textColor: Colors.black,

@@ -6,10 +6,6 @@ import 'app_controller.dart';
 class AppBinding extends Bindings {
   @override
   void dependencies() {
-    // repositories
-
-    // usecases
-
     // controllers
     Get.lazyPut(() => InternetConnectionListener());
     Get.lazyPut(() => AppController(Get.find()));

@@ -16,11 +16,13 @@ class DefaultButton extends StatelessWidget {
   final Color backgroundColor;
   final double textSize;
   final Color textColor;
+  final bool executeWhenNoInternet;
 
   const DefaultButton(
       {Key? key,
       required this.onPressed,
       required this.text,
+      this.executeWhenNoInternet = false,
       this.textColor = Colors.white,
       this.durationInMilliseconds = 300,
       this.enable = true,
@@ -53,7 +55,7 @@ class DefaultButton extends StatelessWidget {
             onPressed: enable
                 ? () {
                     final appController = Get.find<AppController>();
-                    if (appController.isConnected.value) {
+                    if (appController.isConnected.value || executeWhenNoInternet) {
                       onPressed();
                     } else {
                       appController.internetConnectionListener.showNoInternetSnackbar();

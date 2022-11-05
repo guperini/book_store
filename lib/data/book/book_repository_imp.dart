@@ -3,6 +3,7 @@ import 'package:book_store/infra/adapters/http_adapter.dart';
 import 'package:book_store/infra/adapters/http_adapter_imp.dart';
 import 'package:dartz/dartz.dart';
 
+import '../../core/errors/http_errors.dart';
 import '../../domain/book/book_entity.dart';
 import '../../domain/book/book_repository.dart';
 import 'book_dto.dart';
@@ -13,14 +14,14 @@ class BookRepositoryImp implements BookRepository {
   BookRepositoryImp(this.httpAdapter);
 
   @override
-  Future<Either<Exception, List<BookEntity>>> searchBooks(String searchText, int startIndex, int maxResults) async {
+  Future<Either<HttpError, List<BookEntity>>> searchBooks(String searchText, int startIndex, int maxResults) async {
     try {
       final Map<String, dynamic> response = await httpAdapter.request(
           method: HttpMethod.get,
           endpoint: Endpoints.searchBooks,
           queryParameters: {"q": searchText, "maxResults": maxResults, "startIndex": startIndex});
 
-      final list = List<Map<String, dynamic>>.from(response['items']);
+      final list = response['items'] != null ? List<Map<String, dynamic>>.from(response['items']) : [];
 
       final books = <BookEntity>[];
 
@@ -28,13 +29,15 @@ class BookRepositoryImp implements BookRepository {
         books.add(Book.fromJson(item));
       }
       return Right(books);
+    } on HttpError catch (httpError) {
+      return Left(httpError);
     } catch (e) {
-      return Left(Exception(e.toString()));
+      return Left(HttpError(e.toString()));
     }
   }
 
   @override
-  Future<Either<Exception, BookEntity>> getFavoriteBook(String selfLinkId) async {
+  Future<Either<HttpError, BookEntity>> getFavoriteBook(String selfLinkId) async {
     try {
       final Map<String, dynamic> response = await httpAdapter.request(
         method: HttpMethod.get,
@@ -44,8 +47,10 @@ class BookRepositoryImp implements BookRepository {
       final result = Map<String, dynamic>.from(response);
 
       return Right(Book.fromJson(result));
+    } on HttpError catch (httpError) {
+      return Left(httpError);
     } catch (e) {
-      return Left(Exception(e.toString()));
+      return Left(HttpError(e.toString()));
     }
   }
 }

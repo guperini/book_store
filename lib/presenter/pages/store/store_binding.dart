@@ -24,8 +24,8 @@ class StoreBinding extends Bindings {
 
     // Usecases
 
-    Get.lazyPut<SearchBooksUseCase>(() => SearchBooksUseCaseImp(Get.find()));
-    Get.lazyPut<GetFavoriteBookUseCase>(() => GetFavoriteBookUseCaseImp(Get.find()));
+    Get.lazyPut<SearchBooksUsecase>(() => SearchBooksUsecaseImp(Get.find()));
+    Get.lazyPut<GetFavoriteBookUsecase>(() => GetFavoriteBookUsecaseImp(Get.find()));
 
     // Controllers
 

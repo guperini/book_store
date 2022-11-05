@@ -10,7 +10,7 @@ class SplashController extends GetxController {
 
   // observable variables
 
-  RxBool get showGoToStoreButton => (appController.isConnected.value && !isLoading.value).obs;
+  RxBool get showGoToStoreButton => (!isLoading.value).obs;
 
   final isLoading = true.obs;
 

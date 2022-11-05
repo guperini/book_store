@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 
+import '../../core/errors/http_errors.dart';
 import 'http_adapter.dart';
 
 class HttpAdapterImp implements HttpAdapter {
@@ -73,10 +74,10 @@ class HttpAdapterImp implements HttpAdapter {
           );
           break;
         default:
-          return HttpError.serverError;
+          return HttpError('serverError');
       }
     } catch (error) {
-      throw HttpError.serverError;
+      throw HttpError('serverError');
     }
     return _handleResponse(response, endpoint);
   }
@@ -89,31 +90,20 @@ class HttpAdapterImp implements HttpAdapter {
     switch (response.statusCode) {
       case 200:
         return response.body.isEmpty ? null : json;
-      case 204:
-        return null;
       case 400:
-        throw HttpError.badRequest;
+        throw HttpError('badRequest');
       case 401:
-        throw HttpError.unauthorized;
+        throw HttpError('unauthorized');
       case 403:
-        throw HttpError.forbidden;
+        throw HttpError('forbidden');
       case 404:
-        throw HttpError.notFound;
+        throw HttpError('notFound');
       case 500:
-        throw HttpError.serverError;
+        throw HttpError('serverError');
       default:
-        throw HttpError.serverError;
+        throw HttpError('serverError');
     }
   }
 }
 
 enum HttpMethod { get, put, post, patch, delete }
-
-enum HttpError {
-  badRequest,
-  notFound,
-  serverError,
-  unauthorized,
-  forbidden,
-  invalidData,
-}

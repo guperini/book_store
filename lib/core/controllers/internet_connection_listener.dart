@@ -11,6 +11,26 @@ class InternetConnectionListener extends GetxController {
 
   StreamSubscription<InternetConnectionStatus>? connectionListener;
 
+  // listeners
+
+  _initConnectionListener() => InternetConnectionChecker().onStatusChange.listen(
+        (InternetConnectionStatus status) {
+          switch (status) {
+            case InternetConnectionStatus.connected:
+              isConnected.value = true;
+
+              break;
+            case InternetConnectionStatus.disconnected:
+              isConnected.value = false;
+              showNoInternetSnackbar();
+
+              break;
+          }
+        },
+      );
+
+  // methods
+
   @override
   void onInit() {
     if (!kIsWeb) {
@@ -28,21 +48,6 @@ class InternetConnectionListener extends GetxController {
     super.onClose();
   }
 
-  _initConnectionListener() => InternetConnectionChecker().onStatusChange.listen(
-        (InternetConnectionStatus status) {
-          switch (status) {
-            case InternetConnectionStatus.connected:
-              isConnected.value = true;
-
-              break;
-            case InternetConnectionStatus.disconnected:
-              isConnected.value = false;
-              showNoInternetSnackbar();
-
-              break;
-          }
-        },
-      );
   showNoInternetSnackbar() {
     return CustomSnackbar.call(
       "Internet Connection",

@@ -13,7 +13,6 @@ abstract class Routes {
   static const bookDetails = '/bookDetails';
 }
 
-// ignore: avoid_classes_with_only_static_members
 abstract class AppRoutes {
   static List<GetPage> routes = [
     GetPage(

@@ -17,7 +17,7 @@ void main() {
   test('search books returns right list books', () async {
     final httpAdapter = HttpAdapterImp(Client());
     final repository = BookRepositoryImp(httpAdapter);
-    final sut = SearchBooksUseCaseImp(repository);
+    final sut = SearchBooksUsecaseImp(repository);
 
     //ARRANGE
     const searchText = 'mobile development';
@@ -32,7 +32,7 @@ void main() {
   });
   test('verify if repository is called once', () async {
     final repositoryMock = BookRepositoryMock();
-    final sutMock = SearchBooksUseCaseImp(repositoryMock);
+    final sutMock = SearchBooksUsecaseImp(repositoryMock);
 
     //ARRANGE
     const searchText = 'mobile development';

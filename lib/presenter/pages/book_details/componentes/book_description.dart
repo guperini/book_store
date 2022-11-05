@@ -16,19 +16,22 @@ class BookDescription extends GetWidget<BookDetailsController> {
       height: Get.height * 0.30,
       child: Scrollbar(
         thumbVisibility: true,
-        child: ListView(padding: const EdgeInsets.all(20), children: [
-          const Text(
-            "Description",
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            controller.book.value.volumeInfo?.description ?? '',
-            style: const TextStyle(fontSize: 10),
-            textAlign: TextAlign.justify,
-          ),
-        ]),
+        child: ListView(
+          padding: const EdgeInsets.all(20),
+          children: [
+            const Text(
+              "Description",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              controller.book.value.volumeInfo?.description ?? '',
+              style: const TextStyle(fontSize: 10),
+              textAlign: TextAlign.justify,
+            ),
+          ],
+        ),
       ),
     );
   }

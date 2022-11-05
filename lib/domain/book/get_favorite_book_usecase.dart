@@ -1,20 +1,21 @@
 import 'package:dartz/dartz.dart';
 
+import '../../core/errors/http_errors.dart';
 import 'book_entity.dart';
 import 'book_repository.dart';
 
-abstract class GetFavoriteBookUseCase {
-  Future<Either<Exception, BookEntity>> call(
+abstract class GetFavoriteBookUsecase {
+  Future<Either<HttpError, BookEntity>> call(
     String selfLinkId,
   );
 }
 
-class GetFavoriteBookUseCaseImp implements GetFavoriteBookUseCase {
+class GetFavoriteBookUsecaseImp implements GetFavoriteBookUsecase {
   final BookRepository bookRepository;
-  GetFavoriteBookUseCaseImp(this.bookRepository);
+  GetFavoriteBookUsecaseImp(this.bookRepository);
 
   @override
-  Future<Either<Exception, BookEntity>> call(String selfLinkId) async {
+  Future<Either<HttpError, BookEntity>> call(String selfLinkId) async {
     return await bookRepository.getFavoriteBook(selfLinkId);
   }
 }
