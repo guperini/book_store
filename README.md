@@ -10,7 +10,7 @@ Book Store app features
 Tests
 
 - Unit tests was made to test the search books usecase and the get favorite book usecase
-- The integration test asserts that the most importante features are working fine
+- The integration test asserts that all features are working fine
 
 Architecture
 
@@ -18,4 +18,4 @@ Architecture
 
 Bricks
 
-For a quick development bricks were used to generate views and usecases files
+For a quick development bricks were used to generate views and usecases files.
