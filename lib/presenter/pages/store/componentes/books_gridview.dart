@@ -14,6 +14,7 @@ class BooksGridView extends GetWidget<StoreController> {
       controller: controller.scrollController,
       child: Obx(
         () => GridView.builder(
+          key: const Key('GridKey'),
           padding: const EdgeInsets.symmetric(horizontal: 10),
           controller: controller.scrollController,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

@@ -1,21 +1,21 @@
 # book_store
 
-A new Flutter project.
+Book Store app features
 
-## Getting Started
+- The app detects when internet connection is down and warns the user
+- Get a list of books (20 books each time), scrolling to the bottom fetchs more 20
+- Shows the books in a two columns gridview
+- Click in the book and you can see it´s details and make it favorite
 
-This project is a starting point for a Flutter application.
+Tests
 
-A few resources to get you started if this is your first Flutter project:
+- Unit tests was made to test the search books usecase and the get favorite book usecase
+- The integration test asserts that the most importante features are working fine
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Architecture
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- TDD - Clean Architecture
 
+Bricks
 
-Brick para criar entity: mason make entity_usecases -c entity.json -o ./lib
-Brick para criar view: mason make view --name nome_da_view -o ./lib/presenter/pages
-Brick para criar widget: mason make widget --name nome_do_widget -o ./lib/presenter/widgets
+For a quick development bricks were used to generate views and usecases files

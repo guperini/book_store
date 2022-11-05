@@ -28,10 +28,8 @@ void main() {
   }
 
   testWidgets(
-    'App test',
+    '11 tests to ensure all the functions are working fine',
     (WidgetTester tester) async {
-      //    arrangeNewsServiceReturns3Articles();
-
       await tester.pumpWidget(createWidgetUnderTest());
 
       await tester.pumpAndSettle();
@@ -83,6 +81,20 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text('No books to show!'), findsOneWidget);
+
+      await tester.tap(find.text('My favorite books  '));
+
+      await tester.pumpAndSettle();
+
+      await tester.drag(find.byKey(const Key('GridKey')), const Offset(0.0, -7000));
+
+      await tester.pumpAndSettle();
+
+      await tester.drag(find.byKey(const Key('GridKey')), const Offset(0.0, -500));
+
+      await Future.delayed(const Duration(seconds: 2));
+
+      expect(find.byKey(const Key('su4lDQAAQBAJ')), findsOneWidget);
     },
   );
 }

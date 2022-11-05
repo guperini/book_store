@@ -28,7 +28,7 @@ class StoreView extends GetView<StoreController> {
                 width: 60,
                 child: Padding(
                   padding: EdgeInsets.all(15.0),
-                  child: LoadingIndicator(size: 20),
+                  child: LoadingIndicator(key: Key('loading'), size: 20),
                 ),
               )
           ],
