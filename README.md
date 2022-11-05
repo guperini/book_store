@@ -9,7 +9,7 @@ Book Store app features
 
 Tests
 
-- Unit tests was made to test the search books usecase and the get favorite book usecase
+- Unit tests were made to test the search books usecase and the get favorite book usecase
 - The integration test asserts that all features are working fine
 
 Architecture
