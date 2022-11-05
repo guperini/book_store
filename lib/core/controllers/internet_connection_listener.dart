@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 import '../../presenter/widgets/custom_snackbar.dart';
 

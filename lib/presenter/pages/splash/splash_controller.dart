@@ -1,4 +1,4 @@
-import 'package:book_store/core/app/app_routes.dart';
+import '../../../core/app/app_routes.dart';
 import 'package:get/get.dart';
 
 import '../../../core/app/app_controller.dart';

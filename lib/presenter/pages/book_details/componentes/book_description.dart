@@ -1,8 +1,8 @@
-import 'package:book_store/presenter/pages/book_details/book_details_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../widgets/round_container.dart';
+import '../book_details_controller.dart';
 
 class BookDescription extends GetWidget<BookDetailsController> {
   const BookDescription({super.key});

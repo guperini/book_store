@@ -1,5 +1,5 @@
-import 'package:book_store/presenter/pages/store/store_binding.dart';
-import 'package:book_store/presenter/pages/store/store_view.dart';
+import '../../presenter/pages/store/store_binding.dart';
+import '../../presenter/pages/store/store_view.dart';
 import 'package:get/get.dart';
 
 import '../../presenter/pages/book_details/book_details_binding.dart';

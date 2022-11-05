@@ -1,4 +1,4 @@
-import 'package:book_store/domain/book/book_entity.dart';
+import '../../../domain/book/book_entity.dart';
 import 'package:get/get.dart';
 import '../../../core/app/app_controller.dart';
 import '../store/store_controller.dart';

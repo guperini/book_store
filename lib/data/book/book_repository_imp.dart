@@ -1,6 +1,6 @@
-import 'package:book_store/core/constants/endpoints.dart';
-import 'package:book_store/infra/adapters/http_adapter.dart';
-import 'package:book_store/infra/adapters/http_adapter_imp.dart';
+import '../../core/constants/endpoints.dart';
+import '../../infra/adapters/http_adapter.dart';
+import '../../infra/adapters/http_adapter_imp.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/errors/http_errors.dart';

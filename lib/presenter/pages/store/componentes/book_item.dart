@@ -1,7 +1,7 @@
-import 'package:book_store/core/constants/constants.dart';
-import 'package:book_store/domain/book/book_entity.dart';
-import 'package:book_store/presenter/widgets/loading_indicator.dart';
-import 'package:book_store/presenter/widgets/round_container.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../domain/book/book_entity.dart';
+import '../../../widgets/loading_indicator.dart';
+import '../../../widgets/round_container.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 

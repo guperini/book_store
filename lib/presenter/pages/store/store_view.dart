@@ -1,5 +1,5 @@
-import 'package:book_store/presenter/pages/store/componentes/no_books_to_show.dart';
-import 'package:book_store/presenter/widgets/loading_indicator.dart';
+import 'componentes/no_books_to_show.dart';
+import '../../widgets/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,10 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:book_store/presenter/widgets/default_button.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 import '../../../../core/constants/constants.dart';
-
+import '../../widgets/default_button.dart';
 import '../../widgets/loading_indicator.dart';
 import 'book_details_controller.dart';
 import 'componentes/authors.dart';
@@ -52,11 +51,12 @@ class BookDetailsView extends GetView<BookDetailsController> {
           SizedBox(
             height: 30,
             child: DefaultButton(
+              key: const Key('GO BACK'),
               elevation: 0,
-              horizontalPadding: Get.width * 0.4,
+              horizontalPadding: Get.width * 0.35,
               onPressed: () => Get.back(),
               executeWhenNoInternet: true,
-              text: 'BACK',
+              text: 'GO BACK',
               textSize: 12,
               textColor: Colors.black,
               backgroundColor: Colors.grey,

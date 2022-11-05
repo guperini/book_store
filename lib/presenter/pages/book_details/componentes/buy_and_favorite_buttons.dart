@@ -1,4 +1,4 @@
-import 'package:book_store/presenter/pages/book_details/book_details_controller.dart';
+import '../book_details_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -19,6 +19,7 @@ class BuyAndFavoriteButtons extends GetWidget<BookDetailsController> {
             height: 30,
             width: Get.width * 0.35,
             child: DefaultButton(
+                key: const Key('BUY'),
                 elevation: 0,
                 onPressed: () {
                   launchUrl(Uri.parse(controller.book.value.volumeInfo!.infoLink!.replaceAll('http:', 'https:')));

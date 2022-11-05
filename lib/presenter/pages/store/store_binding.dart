@@ -1,8 +1,8 @@
-import 'package:book_store/data/book/book_repository_imp.dart';
-import 'package:book_store/domain/book/book_repository.dart';
-import 'package:book_store/domain/book/get_favorite_book_usecase.dart';
-import 'package:book_store/infra/adapters/http_adapter.dart';
-import 'package:book_store/infra/adapters/http_adapter_imp.dart';
+import '../../../data/book/book_repository_imp.dart';
+import '../../../domain/book/book_repository.dart';
+import '../../../domain/book/get_favorite_book_usecase.dart';
+import '../../../infra/adapters/http_adapter.dart';
+import '../../../infra/adapters/http_adapter_imp.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart';
 

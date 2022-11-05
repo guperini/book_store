@@ -1,4 +1,4 @@
-import 'package:book_store/presenter/widgets/round_container.dart';
+import '../../../widgets/round_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

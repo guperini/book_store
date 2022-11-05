@@ -1,4 +1,4 @@
-import 'package:book_store/core/controllers/internet_connection_listener.dart';
+import '../../../core/controllers/internet_connection_listener.dart';
 import 'package:get/get.dart';
 
 import '../../../core/app/app_controller.dart';

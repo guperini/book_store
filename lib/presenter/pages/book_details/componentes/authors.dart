@@ -1,6 +1,7 @@
-import 'package:book_store/presenter/pages/book_details/book_details_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../book_details_controller.dart';
 
 class Authors extends GetWidget<BookDetailsController> {
   const Authors({super.key});

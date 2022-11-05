@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:book_store/core/controllers/internet_connection_listener.dart';
+import '../controllers/internet_connection_listener.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';

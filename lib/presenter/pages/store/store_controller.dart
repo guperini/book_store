@@ -1,6 +1,6 @@
-import 'package:book_store/domain/book/book_entity.dart';
-import 'package:book_store/domain/book/search_books_usecase.dart';
-import 'package:book_store/presenter/widgets/custom_snackbar.dart';
+import '../../../domain/book/book_entity.dart';
+import '../../../domain/book/search_books_usecase.dart';
+import '../../widgets/custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
