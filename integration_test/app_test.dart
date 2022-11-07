@@ -14,6 +14,8 @@ class HttpAdapterMock extends Mock implements HttpAdapter {}
 
 class BookRepositoryMock extends Mock implements BookRepositoryImp {}
 
+// Make sure to delete the app in the device emulator before running this test.
+
 void main() {
   Widget createWidgetUnderTest() {
     return GetMaterialApp(
