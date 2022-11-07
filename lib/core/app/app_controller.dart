@@ -1,10 +1,8 @@
-import 'dart:async';
 import 'dart:io';
 
 import '../controllers/internet_connection_listener.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:path_provider/path_provider.dart';
 
 class AppController extends GetxController {
@@ -13,11 +11,6 @@ class AppController extends GetxController {
   AppController(
     this.internetConnectionListener,
   );
-
-  // variables
-  static bool producao = const bool.fromEnvironment("production");
-  static String versaoDoApp = "0.0.2";
-  StreamSubscription<InternetConnectionStatus>? listener;
 
   // getters
   Rx<bool> get isConnected => internetConnectionListener.isConnected;
@@ -28,14 +21,6 @@ class AppController extends GetxController {
     _initHive();
 
     super.onInit();
-  }
-
-  @override
-  void onClose() {
-    if (listener != null) {
-      listener!.cancel();
-    }
-    super.onClose();
   }
 
   _initHive() async {
