@@ -90,10 +90,13 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      await tester.drag(find.byKey(const Key('GridKey')), const Offset(0.0, -500));
+      await Future.delayed(const Duration(seconds: 1));
+
+      await tester.drag(find.byKey(const Key('GridKey')), const Offset(0.0, -300));
 
       await Future.delayed(const Duration(seconds: 2));
 
+      // Temporary test. Find the book id:su4lDQAAQBAJ
       expect(find.byKey(const Key('su4lDQAAQBAJ')), findsOneWidget);
     },
   );
