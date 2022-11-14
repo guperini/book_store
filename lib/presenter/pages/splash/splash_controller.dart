@@ -1,3 +1,7 @@
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+
 import '../../../core/app/app_routes.dart';
 import 'package:get/get.dart';
 
@@ -16,9 +20,19 @@ class SplashController extends GetxController {
 
   // methods
 
+  // prints logical and physical size when debugging.
+  // Usage: to emulate to Windows or MacOs and test diferent screen sizes
+  debugPrintScreenSizeLogicalAndPhysical(
+    BuildContext context,
+  ) {
+    debugPrint('Logical  => H ${context.height} X ${context.width} W');
+    debugPrint('Physical => H ${window.physicalSize.height} X ${window.physicalSize.width} W');
+  }
+
   @override
   void onInit() async {
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(milliseconds: 1500));
+
     isLoading.value = false;
 
     super.onInit();

@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import '../../../domain/book/book_entity.dart';
 import 'package:get/get.dart';
 import '../../../core/app/app_controller.dart';
@@ -9,15 +11,8 @@ class BookDetailsController extends GetxController {
 
   BookDetailsController(this.appController);
 
-  @override
-  void onInit() {
-    isFavorite.value = book.value.isFavorite;
-    super.onInit();
-  }
-
-  // arguments
-
-  // text controllers
+  // controllers
+  final scrollController = ScrollController();
 
   // lists
 
@@ -29,6 +24,18 @@ class BookDetailsController extends GetxController {
   List<String> get authors => book.value.volumeInfo!.authors ?? [];
 
   // methods
+
+  @override
+  void onInit() {
+    isFavorite.value = book.value.isFavorite;
+    super.onInit();
+  }
+
+  @override
+  void onClose() {
+    scrollController.dispose();
+    super.onClose();
+  }
 
   onPressedFavoriteButton() {
     Get.find<StoreController>().toogleFavoriteBook(book.value);

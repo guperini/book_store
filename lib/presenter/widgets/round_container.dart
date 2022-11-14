@@ -33,6 +33,7 @@ class RoundContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      hoverColor: Colors.transparent,
       onTap: () => onTap == null ? {} : onTap!(),
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: verticalPadding),

@@ -16,8 +16,10 @@ class BookDescription extends GetWidget<BookDetailsController> {
       height: Get.height * 0.30,
       child: Scrollbar(
         thumbVisibility: true,
+        controller: controller.scrollController,
         child: ListView(
           padding: const EdgeInsets.all(20),
+          controller: controller.scrollController,
           children: [
             const Text(
               "Description",

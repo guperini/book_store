@@ -11,6 +11,8 @@ class SplashView extends GetView<SplashController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.debugPrintScreenSizeLogicalAndPhysical(context);
+
     return Scaffold(
       body: Container(
         height: Get.height,
